@@ -9,6 +9,11 @@ spec:
     metadata:
       labels:
         app: node-example
+        ut-service: filebeatk8s
+        ut-type: syslog
+        ut-token: express_token_fb
+      annotations:
+        uninett/logging: 'true'
     spec:
       containers:
       - name: node-example
@@ -23,6 +28,11 @@ metadata:
   name: node-example
   labels:
     app: node-example
+    ut-service: filebeatk8s
+    ut-type: syslog
+    ut-token: express_token_fb
+  annotations:
+    uninett/logging: 'true'
 spec:
   selector:
     app: node-example
