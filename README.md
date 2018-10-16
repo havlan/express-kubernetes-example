@@ -10,7 +10,7 @@
 
 ```yaml
 docker login
-docker built -t havlan/node-express-example
+docker build -t havlan/node-express-example .
 docker push havlan/node-express-example
 ```
 

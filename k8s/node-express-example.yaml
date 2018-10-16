@@ -9,11 +9,14 @@ spec:
     metadata:
       labels:
         app: node-example
-        ut-service: filebeatk8s
-        ut-type: syslog
-        ut-token: express_token_fb
+        laas-service: filebeatk8s
+        laas-type: json
+        laas-token: abc
       annotations:
         uninett/logging: 'true'
+        co.elastic.logs/multiline.pattern: '^\['
+        co.elastic.logs/multiline.negate: 'true'
+        co.elastic.logs/multiline.match: after
     spec:
       containers:
       - name: node-example
@@ -21,6 +24,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+
 ---
 apiVersion: v1
 kind: Service
@@ -28,11 +32,14 @@ metadata:
   name: node-example
   labels:
     app: node-example
-    ut-service: filebeatk8s
-    ut-type: syslog
-    ut-token: express_token_fb
+    laas-service: filebeatk8s
+    laas-type: json
+    laas-token: abc
   annotations:
     uninett/logging: 'true'
+    co.elastic.logs/multiline.pattern: '^\['
+    co.elastic.logs/multiline.negate: 'true'
+    co.elastic.logs/multiline.match: after
 spec:
   selector:
     app: node-example

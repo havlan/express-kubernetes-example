@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('express-locallibrary:server');
 var http = require('http');
+var sleep = require('sleep');
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +89,18 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+for(var i=0;i<10000;i++) {
+  loopPrintDateJsonFormat();
+  sleep.sleep(1);
+}
+
+
+function loopPrintDateJsonFormat() {
+  let jsonDate = new Date().toJSON();
+  let jsonRet = {
+    "datetime": jsonDate
+  };
+  console.log(jsonRet);
+}
+
