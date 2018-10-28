@@ -3,20 +3,24 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: node-example-deployment
+  labels:
+    app: node-example
+  annotations:
+    laas.uninett.no/enabled: 'true'
+    laas.uninett.no/service: filebeatk8s
+    laas.uninett.no/type: json
+    laas.uninett.no/token: abc
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: node-example
-        laas-service: filebeatk8s
-        laas-type: json
-        laas-token: abc
       annotations:
-        uninett/logging: 'true'
-        co.elastic.logs/multiline.pattern: '^\['
-        co.elastic.logs/multiline.negate: 'true'
-        co.elastic.logs/multiline.match: after
+        laas.uninett.no/enabled: 'true'
+        laas.uninett.no/service: filebeatk8s
+        laas.uninett.no/type: json
+        laas.uninett.no/token: abc
     spec:
       containers:
       - name: node-example
@@ -32,14 +36,11 @@ metadata:
   name: node-example
   labels:
     app: node-example
-    laas-service: filebeatk8s
-    laas-type: json
-    laas-token: abc
   annotations:
-    uninett/logging: 'true'
-    co.elastic.logs/multiline.pattern: '^\['
-    co.elastic.logs/multiline.negate: 'true'
-    co.elastic.logs/multiline.match: after
+    laas.uninett.no/enabled: 'true'
+    laas.uninett.no/service: filebeatk8s
+    laas.uninett.no/type: json
+    laas.uninett.no/token: abc
 spec:
   selector:
     app: node-example

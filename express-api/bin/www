@@ -8,7 +8,6 @@ const app = require('../app');
 const logger = require('../config/winston')
 const debug = require('debug')('express-locallibrary:server');
 const http = require('http');
-const sleep = require('sleep');
 
 /**
  * Get port from environment and store in Express.
@@ -97,7 +96,7 @@ var interval = setInterval(() => {
     "datetime": jsonDate
   };
   logger.info(jsonRet)
-}, 1000);
+}, 2000);
 
 
 function loopPrintDateJsonFormat() {
