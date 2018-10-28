@@ -4,16 +4,17 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('express-locallibrary:server');
-var http = require('http');
-var sleep = require('sleep');
+const app = require('../app');
+const logger = require('../config/winston')
+const debug = require('debug')('express-locallibrary:server');
+const http = require('http');
+const sleep = require('sleep');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -59,7 +60,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  const bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -83,17 +84,20 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  const addr = server.address();
+  const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
 
-for(var i=0;i<10000;i++) {
-  loopPrintDateJsonFormat();
-  sleep.sleep(1);
-}
+var interval = setInterval(() => {
+  let jsonDate = new Date().toJSON();
+  let jsonRet = {
+    "datetime": jsonDate
+  };
+  logger.info(jsonRet)
+}, 1000);
 
 
 function loopPrintDateJsonFormat() {
@@ -101,6 +105,7 @@ function loopPrintDateJsonFormat() {
   let jsonRet = {
     "datetime": jsonDate
   };
-  console.log(jsonRet);
+  //console.log(jsonRet);
+  logger.info(jsonRet);
 }
 
