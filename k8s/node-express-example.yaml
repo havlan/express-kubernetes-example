@@ -5,11 +5,6 @@ metadata:
   name: node-example-deployment
   labels:
     app: node-example
-  annotations:
-    laas.uninett.no/enabled: 'true'
-    laas.uninett.no/service: filebeatk8s
-    laas.uninett.no/type: json
-    laas.uninett.no/token: abc
 spec:
   replicas: 1
   template:
@@ -28,6 +23,18 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        volumeMounts:
+          - mountPath: /var/log
+            name: varlog
+      - name: specificfilelog
+        image: busybox
+        args: [/bin/sh, -c, 'tail -n+1 -f /var/log/express-k8s-example/express-example-app.log']
+        volumeMounts:
+          - mountPath: /var/log
+            name: varlog
+      volumes:
+        - name: varlog
+          emptyDir: {}
 
 ---
 apiVersion: v1

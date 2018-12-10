@@ -5,7 +5,6 @@
 
 ## Updating the app
 
-- Use versioning(?)
 - Rebuilding and pushing 
 
 ```yaml

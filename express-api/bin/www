@@ -95,7 +95,6 @@ var interval = setInterval(() => {
   let jsonRet = {
     "datetime": jsonDate
   };
-  console.log(jsonRet);
   logger.info(jsonRet);
 }, 2000);
 
