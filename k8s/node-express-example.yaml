@@ -12,10 +12,9 @@ spec:
       labels:
         app: node-example
       annotations:
-        laas.uninett.no/enabled: 'true'
-        laas.uninett.no/service: filebeatk8s
-        laas.uninett.no/type: json
-        laas.uninett.no/token: abc
+        laas.app.no/service: filebeatk8s
+        laas.app.no/type: json
+        laas.app.no/token: abc
     spec:
       containers:
       - name: node-example
@@ -44,10 +43,9 @@ metadata:
   labels:
     app: node-example
   annotations:
-    laas.uninett.no/enabled: 'true'
-    laas.uninett.no/service: filebeatk8s
-    laas.uninett.no/type: json
-    laas.uninett.no/token: abc
+    laas.app.no/service: filebeatk8s
+    laas.app.no/type: json
+    laas.app.no/token: abc
 spec:
   selector:
     app: node-example
